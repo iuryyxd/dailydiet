@@ -1,9 +1,4 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -17,6 +12,10 @@ interface NewMealProps {
 }
 
 export function NewMeal({ navigation }: NewMealProps) {
+  const handleRegisterMeal = () => {
+    navigation.navigate("OnDiet");
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -39,7 +38,11 @@ export function NewMeal({ navigation }: NewMealProps) {
 
         <Select />
 
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          style={styles.button}
+          activeOpacity={1}
+          onPress={handleRegisterMeal}
+        >
           <Text style={styles.buttonText}>Cadastrar refeição</Text>
         </TouchableOpacity>
       </View>
@@ -110,7 +113,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 6,
-    
+
     position: "absolute",
     bottom: 70,
     left: 24,
