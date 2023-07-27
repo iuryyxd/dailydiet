@@ -1,15 +1,10 @@
 import { ScrollView, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { HomeProps } from "../@types/navigationProp";
 
 import { Header } from "../components/Header";
 import { Percentage } from "../components/Percentage";
 import { Meals } from "../components/Meals";
-
-import { HomeScreenNavigationProp } from "../@types/navigationProp";
-
-interface HomeProps {
-  navigation: HomeScreenNavigationProp;
-};
 
 export function Home({ navigation }: HomeProps) {
 

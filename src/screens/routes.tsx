@@ -1,17 +1,10 @@
 import { createStackNavigator } from "@react-navigation/stack";
+import { RootStackParamList } from "../@types/navigationProp";
+
 import { Home } from "./Home";
 import { Statistics } from "./Statistics";
 import { NewMeal } from "./NewMeal";
-import { OnDiet } from "./OnDiet";
-import { OffDiet } from "./OffDiet";
-
-export type RootStackParamList = {
-  Home: undefined;
-  Statistics: undefined;
-  NewMeal: undefined;
-  OnDiet: undefined;
-  OffDiet: undefined;
-};
+import { Feedback } from "./Feedback";
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -26,8 +19,7 @@ export function Routes() {
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Statistics" component={Statistics} />
       <Stack.Screen name="NewMeal" component={NewMeal} />
-      <Stack.Screen name="OnDiet" component={OnDiet} />
-      <Stack.Screen name="OffDiet" component={OffDiet} />
+      <Stack.Screen name="Feedback" component={Feedback} />
     </Stack.Navigator>
   );
 }

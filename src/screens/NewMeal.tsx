@@ -2,18 +2,23 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { NewMealScreenNavigationProp } from "../@types/navigationProp";
+import { NewMealProps } from "../@types/navigationProp";
 import { Input } from "../components/Input";
 import { DateAndTimeInput } from "../components/DateAndTimeInput";
 import { Select } from "../components/Select";
-
-interface NewMealProps {
-  navigation: NewMealScreenNavigationProp;
-}
+import { useState } from "react";
 
 export function NewMeal({ navigation }: NewMealProps) {
+  const [isOnDiet, setIsOnDiet] = useState<boolean>();
+
+  const handleToggleDiet = (option: boolean) => {
+    setIsOnDiet(option);
+  };
+
   const handleRegisterMeal = () => {
-    navigation.navigate("OffDiet");
+    navigation.navigate("Feedback", {
+      isOnDiet,
+    });
   };
 
   return (
@@ -36,7 +41,7 @@ export function NewMeal({ navigation }: NewMealProps) {
           <DateAndTimeInput label="Hora" type="time" />
         </View>
 
-        <Select />
+        <Select handleToggleDiet={handleToggleDiet} />
 
         <TouchableOpacity
           style={styles.button}

@@ -1,19 +1,13 @@
 import { View, Text, StyleSheet } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { StatisticsProps } from "../@types/navigationProp";
 
 import { StatisticCard } from "../components/StatisticCard";
-
-import { StatisticsScreenNavigationProp } from "../@types/navigationProp";
-
-interface StatisticsProps {
-  navigation: StatisticsScreenNavigationProp;
-}
 
 export function Statistics({ navigation }: StatisticsProps) {
   return (
     <SafeAreaView style={styles.container}>
-
       <View style={styles.header}>
         <Feather
           name="arrow-left"
@@ -34,7 +28,6 @@ export function Statistics({ navigation }: StatisticsProps) {
         <StatisticCard title="109" text="refeições registradas" />
 
         <View style={styles.cardsDiet}>
-          
           <View style={styles.cardOnDiet}>
             <Text style={styles.cardTitle}>99</Text>
             <Text style={styles.cardText}>refeições dentro da dieta</Text>
@@ -44,7 +37,6 @@ export function Statistics({ navigation }: StatisticsProps) {
             <Text style={styles.cardTitle}>10</Text>
             <Text style={styles.cardText}>refeições fora da dieta</Text>
           </View>
-
         </View>
       </View>
     </SafeAreaView>

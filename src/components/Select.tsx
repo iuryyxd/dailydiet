@@ -2,11 +2,16 @@ import { View, Text, StyleSheet } from "react-native";
 import { Option } from "./Option";
 import { useState } from "react";
 
-export function Select() {
+interface SelectProps {
+  handleToggleDiet: (option: boolean) => void;
+}
+
+export function Select({ handleToggleDiet }: SelectProps) {
   const [option, setOption] = useState<string>();
 
   const handleOption = (option: string) => {
     setOption(option);
+    handleToggleDiet(option === "yes");
   };
 
   return (

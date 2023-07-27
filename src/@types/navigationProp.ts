@@ -1,27 +1,27 @@
-import { StackNavigationProp } from "@react-navigation/stack";
-import { RootStackParamList } from "../screens/routes";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
-export type HomeScreenNavigationProp = StackNavigationProp<
-  RootStackParamList,
-  "Home"
->;
+export type RootStackParamList = {
+  Home: undefined;
+  Statistics: undefined;
+  NewMeal: undefined;
+  Feedback: {
+    isOnDiet: boolean | undefined;
+  };
+};
 
-export type StatisticsScreenNavigationProp = StackNavigationProp<
+export type HomeProps = NativeStackScreenProps<RootStackParamList, "Home">;
+
+export type StatisticsProps = NativeStackScreenProps<
   RootStackParamList,
   "Statistics"
 >;
 
-export type NewMealScreenNavigationProp = StackNavigationProp<
+export type NewMealProps = NativeStackScreenProps<
   RootStackParamList,
   "NewMeal"
 >;
 
-export type OnDietScreenNavigationProp = StackNavigationProp<
+export type FeedbackProps = NativeStackScreenProps<
   RootStackParamList,
-  "OnDiet"
->;
-
-export type OffDietScreenNavigationProp = StackNavigationProp<
-  RootStackParamList,
-  "OffDiet"
+  "Feedback"
 >;

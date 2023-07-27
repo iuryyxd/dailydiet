@@ -1,24 +1,28 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import OnDietImg from "../../assets/illustration_ondiet.svg";
 import OffDietImg from "../../assets/illustration_offdiet.svg";
-import { OffDietScreenNavigationProp } from "../@types/navigationProp";
 
-interface OffDietProps {
-  navigation: OffDietScreenNavigationProp;
-}
+import { messages } from "../utils/feedbackMessages";
+import { FeedbackProps } from "../@types/navigationProp";
 
-export function OffDiet({ navigation }: OffDietProps) {
+export function Feedback({ navigation, route }: FeedbackProps) {
+  const { isOnDiet } = route.params;
+  const { color, bold, title, message1, message2 } =
+    messages[String(isOnDiet) as keyof typeof messages];
+
   const handleToggleScreen = () => {
     navigation.navigate("Home");
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Que pena!</Text>
+      <Text style={[styles.title, { color: color }]}>{title}</Text>
       <Text style={styles.desc}>
-        Você <Text style={styles.bold}>saiu da dieta</Text> dessa vez, mas
-        continue se esforçando e não desista!
+        {message1}
+        <Text style={styles.bold}>{bold}</Text>
+        {message2}
       </Text>
-      <OffDietImg />
+      {isOnDiet ? <OnDietImg /> : <OffDietImg />}
       <TouchableOpacity
         activeOpacity={1}
         style={styles.button}
@@ -41,7 +45,6 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: "NunitoSans_700Bold",
     fontSize: 24,
-    color: "#BF3B44",
     marginBottom: 8,
   },
 
