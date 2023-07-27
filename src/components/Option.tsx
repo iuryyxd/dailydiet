@@ -13,12 +13,18 @@ export function Option({
   isSelected,
   toggleOption,
 }: OptionProps) {
+
+  const bgColors = {
+    Sim: "#E5F0DB",
+    Não: "#F4E6E7",
+  }
+
   return (
     <TouchableOpacity
       style={[
         styles.container,
         {
-          backgroundColor: isSelected ? "E5F0DB" : "#EFF0F0",
+          backgroundColor: isSelected ? bgColors[label as keyof typeof bgColors] : "#EFF0F0",
           borderColor: isSelected ? color : "",
           borderWidth: isSelected ? 1 : 0,
           borderStyle: "solid",
