@@ -7,6 +7,7 @@ import { FeedbackProps } from "../@types/navigationProp";
 
 export function Feedback({ navigation, route }: FeedbackProps) {
   const { isOnDiet } = route.params;
+
   const { color, bold, title, message1, message2 } =
     messages[String(isOnDiet) as keyof typeof messages];
 
@@ -37,7 +38,6 @@ export function Feedback({ navigation, route }: FeedbackProps) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    display: "flex",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -61,7 +61,6 @@ const styles = StyleSheet.create({
   },
 
   button: {
-    display: "flex",
     alignItems: "center",
     justifyContent: "center",
     paddingVertical: 16,

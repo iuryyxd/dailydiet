@@ -37,12 +37,10 @@ export function Meals({ handleOpenNewMeal }: MealsProps) {
 const styles = StyleSheet.create({
   container: {
     marginTop: 40,
-    display: "flex",
     width: "100%",
   },
 
   addMeal: {
-    display: "flex",
     gap: 8,
   },
 
@@ -58,7 +56,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#333638",
     borderRadius: 6,
 
-    display: "flex",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
@@ -79,7 +76,6 @@ const styles = StyleSheet.create({
   meals: {
     marginTop: 32,
     marginBottom: 32,
-    display: "flex",
     gap: 32,
   },
 });

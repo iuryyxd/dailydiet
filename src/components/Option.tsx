@@ -41,7 +41,6 @@ export function Option({
 
 const styles = StyleSheet.create({
   container: {
-    display: "flex",
     flexDirection: "row",
     gap: 8,
     alignItems: "center",

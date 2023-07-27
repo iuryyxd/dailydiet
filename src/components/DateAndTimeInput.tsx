@@ -32,7 +32,6 @@ export function DateAndTimeInput({ label, type }: DateAndTimeInputProps) {
 
 const styles = StyleSheet.create({
   container: {
-    display: "flex",
     flexGrow: 1,
     gap: 6,
   },

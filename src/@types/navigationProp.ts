@@ -1,3 +1,4 @@
+import { NavigationProp } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 export type RootStackParamList = {
@@ -7,7 +8,10 @@ export type RootStackParamList = {
   Feedback: {
     isOnDiet: boolean | undefined;
   };
+  MealInfo: undefined;
 };
+
+export type StackNavigation = NavigationProp<RootStackParamList>;
 
 export type HomeProps = NativeStackScreenProps<RootStackParamList, "Home">;
 
@@ -24,4 +28,9 @@ export type NewMealProps = NativeStackScreenProps<
 export type FeedbackProps = NativeStackScreenProps<
   RootStackParamList,
   "Feedback"
+>;
+
+export type MealInfoProps = NativeStackScreenProps<
+  RootStackParamList,
+  "MealInfo"
 >;

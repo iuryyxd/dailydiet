@@ -2,12 +2,13 @@ import { ScrollView, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { HomeProps } from "../@types/navigationProp";
 
-import { Header } from "../components/Header";
+import { HomeHeader } from "../components/HomeHeader";
 import { Percentage } from "../components/Percentage";
 import { Meals } from "../components/Meals";
+import { HandleOpenMealContext } from "../contexts/handleOpenMealContext";
 
 export function Home({ navigation }: HomeProps) {
-
+  
   function handleOpenStatistics() {
     navigation.navigate("Statistics");
   }
@@ -16,14 +17,20 @@ export function Home({ navigation }: HomeProps) {
     navigation.navigate("NewMeal");
   }
 
+  function handleOpenMeal() {
+    navigation.navigate("MealInfo");
+  }
+
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <Header />
-        <Percentage handleOpenStatistics={handleOpenStatistics} />
-        <Meals handleOpenNewMeal={handleOpenNewMeal} />
-      </ScrollView>
-    </SafeAreaView>
+    <HandleOpenMealContext.Provider value={{ handleOpenMeal }}>
+      <SafeAreaView style={styles.container}>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <HomeHeader />
+          <Percentage handleOpenStatistics={handleOpenStatistics} />
+          <Meals handleOpenNewMeal={handleOpenNewMeal} />
+        </ScrollView>
+      </SafeAreaView>
+    </HandleOpenMealContext.Provider>
   );
 }
 

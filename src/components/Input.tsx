@@ -38,7 +38,6 @@ export function Input({ label, multine = false, type }: InputProps) {
 
 const styles = StyleSheet.create({
   container: {
-    display: "flex",
     gap: 6,
   },
 

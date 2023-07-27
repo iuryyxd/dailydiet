@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     backgroundColor: "#E5F0DB",
+    paddingTop: 14
   },
 
   header: {
@@ -55,7 +56,6 @@ const styles = StyleSheet.create({
     height: 102,
     borderRadius: 8,
     textAlign: "center",
-    display: "flex",
     justifyContent: "center",
     alignItems: "center",
   },
@@ -99,7 +99,6 @@ const styles = StyleSheet.create({
   },
 
   cardsDiet: {
-    display: "flex",
     flexDirection: "row",
     alignItems: "center",
     flexWrap: "nowrap",
@@ -112,7 +111,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#E5F0DB",
     borderRadius: 8,
     marginBottom: 12,
-    display: "flex",
     justifyContent: "center",
     alignItems: "center",
   },
@@ -123,7 +121,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#F4E6E7",
     borderRadius: 8,
     marginBottom: 12,
-    display: "flex",
     justifyContent: "center",
     alignItems: "center",
   },

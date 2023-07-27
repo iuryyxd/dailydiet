@@ -5,6 +5,7 @@ import { Home } from "./Home";
 import { Statistics } from "./Statistics";
 import { NewMeal } from "./NewMeal";
 import { Feedback } from "./Feedback";
+import { MealInfo } from "./MealInfo";
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -20,6 +21,7 @@ export function Routes() {
       <Stack.Screen name="Statistics" component={Statistics} />
       <Stack.Screen name="NewMeal" component={NewMeal} />
       <Stack.Screen name="Feedback" component={Feedback} />
+      <Stack.Screen name="MealInfo" component={MealInfo} />
     </Stack.Navigator>
   );
 }

@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, Image, ImageBackground } from "react-native";
 
 import Logo from "../../assets/Logo.svg";
 
-export function Header() {
+export function HomeHeader() {
   return (
     <View style={styles.container}>
       <Logo />
@@ -18,7 +18,6 @@ export function Header() {
 
 const styles = StyleSheet.create({
   container: {
-    display: "flex",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",

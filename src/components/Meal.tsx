@@ -30,7 +30,6 @@ export function Meal({ title, list }: Meal) {
 
 const styles = StyleSheet.create({
   container: {
-    display: "flex",
     gap: 8,
   },
 
@@ -41,7 +40,6 @@ const styles = StyleSheet.create({
   },
 
   mealCardsContainer: {
-    display: "flex",
     gap: 8
   },
 });

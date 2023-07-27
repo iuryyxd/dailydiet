@@ -1,4 +1,7 @@
+import { useContext } from "react";
 import { View, Text, StyleSheet } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { HandleOpenMealContext } from "../contexts/handleOpenMealContext";
 
 interface MealCard {
   time: string;
@@ -7,8 +10,14 @@ interface MealCard {
 }
 
 export function MealCard({ time, title, isOnDiet }: MealCard) {
+  const { handleOpenMeal } = useContext(HandleOpenMealContext);
+
   return (
-    <View style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      activeOpacity={1}
+      onPress={handleOpenMeal}
+    >
       <View style={styles.textContainer}>
         <Text style={styles.time}>{time}</Text>
         <View style={styles.divider} />
@@ -18,7 +27,7 @@ export function MealCard({ time, title, isOnDiet }: MealCard) {
       </View>
 
       <View style={isOnDiet ? styles.dotGreen : styles.dotRed} />
-    </View>
+    </TouchableOpacity>
   );
 }
 
@@ -31,7 +40,6 @@ const styles = StyleSheet.create({
     borderStyle: "solid",
     borderRadius: 6,
 
-    display: "flex",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
@@ -39,7 +47,6 @@ const styles = StyleSheet.create({
   },
 
   textContainer: {
-    display: "flex",
     flexDirection: "row",
     alignItems: "center",
     gap: 12,
@@ -63,7 +70,7 @@ const styles = StyleSheet.create({
     fontFamily: "NunitoSans_400Regular",
     fontSize: 16,
     color: "#333638",
-    width: 190
+    width: 190,
   },
 
   dotRed: {

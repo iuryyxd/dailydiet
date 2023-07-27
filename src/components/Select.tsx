@@ -39,7 +39,6 @@ export function Select({ handleToggleDiet }: SelectProps) {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    display: "flex",
     gap: 8,
   },
 
@@ -50,7 +49,6 @@ const styles = StyleSheet.create({
   },
 
   optionsContainer: {
-    display: "flex",
     flexDirection: "row",
     alignItems: "center",
     flexWrap: "nowrap",
