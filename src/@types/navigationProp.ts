@@ -20,3 +20,8 @@ export type OnDietScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
   "OnDiet"
 >;
+
+export type OffDietScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  "OffDiet"
+>;

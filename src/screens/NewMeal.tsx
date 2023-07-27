@@ -13,7 +13,7 @@ interface NewMealProps {
 
 export function NewMeal({ navigation }: NewMealProps) {
   const handleRegisterMeal = () => {
-    navigation.navigate("OnDiet");
+    navigation.navigate("OffDiet");
   };
 
   return (
