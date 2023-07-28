@@ -40,7 +40,13 @@ export function NewMeal({ navigation }: NewMealProps) {
           <Select handleToggleDiet={handleToggleDiet} />
         </View>
 
-        <Button title="Cadastrar refeição" type="Filled" onPress={handleRegisterMeal} />
+        <View>
+          <Button
+            title="Cadastrar refeição"
+            type="Filled"
+            onPress={handleRegisterMeal}
+          />
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -56,13 +62,14 @@ const styles = StyleSheet.create({
 
   form: {
     flex: 2,
+    justifyContent: "space-between",
     backgroundColor: "#fff",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     paddingHorizontal: 24,
     paddingVertical: 40,
     marginTop: 24,
-    justifyContent: "space-between",
+    position: "relative",
   },
 
   inputsContainer: {

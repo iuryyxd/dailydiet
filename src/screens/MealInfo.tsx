@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { MealInfoProps } from "../@types/navigationProp";
@@ -7,11 +8,21 @@ import { MealTag } from "../components/MealTag";
 import { Button } from "../components/Button";
 
 import { Feather } from "@expo/vector-icons";
+import { DeleteModal } from "../components/DeleteModal";
 
 export function MealInfo({ route }: MealInfoProps) {
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const toggleModalVisibility = () => {
+    setModalVisible((prev) => !prev);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <PageHeader title="Refeição" />
+
+      <DeleteModal toggleModalVisibility={toggleModalVisibility} modalVisible={modalVisible} />
+
       <View style={styles.main}>
         <View>
           <Text style={styles.title}>Sanduíche</Text>
@@ -36,6 +47,7 @@ export function MealInfo({ route }: MealInfoProps) {
             title="Excluir refeição"
             type="Outlined"
             icon={<Feather name="trash-2" size={18} color="#1B1D1E" />}
+            onPress={toggleModalVisibility}
           />
         </View>
       </View>
@@ -45,8 +57,7 @@ export function MealInfo({ route }: MealInfoProps) {
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
-    height: "100%",
+    flex: 1,
     backgroundColor: "#E5F0DB",
     position: "relative",
     paddingTop: 14,
