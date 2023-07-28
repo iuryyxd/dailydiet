@@ -9,6 +9,7 @@ export type RootStackParamList = {
     isOnDiet: boolean | undefined;
   };
   MealInfo: undefined;
+  EditMeal: undefined;
 };
 
 export type StackNavigation = NavigationProp<RootStackParamList>;
@@ -33,4 +34,9 @@ export type FeedbackProps = NativeStackScreenProps<
 export type MealInfoProps = NativeStackScreenProps<
   RootStackParamList,
   "MealInfo"
+>;
+
+export type EditMealProps = NativeStackScreenProps<
+  RootStackParamList,
+  "EditMeal"
 >;

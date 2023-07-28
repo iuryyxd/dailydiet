@@ -4,12 +4,12 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { HandleOpenMealContext } from "../contexts/handleOpenMealContext";
 
 interface MealCard {
-  time: string;
+  date: Date;
   title: string;
   isOnDiet: boolean;
 }
 
-export function MealCard({ time, title, isOnDiet }: MealCard) {
+export function MealCard({ date, title, isOnDiet }: MealCard) {
   const { handleOpenMeal } = useContext(HandleOpenMealContext);
 
   return (
@@ -19,7 +19,7 @@ export function MealCard({ time, title, isOnDiet }: MealCard) {
       onPress={handleOpenMeal}
     >
       <View style={styles.textContainer}>
-        <Text style={styles.time}>{time}</Text>
+        <Text style={styles.time}>{String(date)}</Text>
         <View style={styles.divider} />
         <Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">
           {title}

@@ -10,18 +10,25 @@ import { Button } from "../components/Button";
 import { Feather } from "@expo/vector-icons";
 import { DeleteModal } from "../components/DeleteModal";
 
-export function MealInfo({ route }: MealInfoProps) {
+export function MealInfo({ route, navigation }: MealInfoProps) {
   const [modalVisible, setModalVisible] = useState(false);
 
   const toggleModalVisibility = () => {
     setModalVisible((prev) => !prev);
   };
 
+  const handleEditMeal = () => {
+    navigation.navigate("EditMeal");
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <PageHeader title="Refeição" />
 
-      <DeleteModal toggleModalVisibility={toggleModalVisibility} modalVisible={modalVisible} />
+      <DeleteModal
+        toggleModalVisibility={toggleModalVisibility}
+        modalVisible={modalVisible}
+      />
 
       <View style={styles.main}>
         <View>
@@ -42,6 +49,7 @@ export function MealInfo({ route }: MealInfoProps) {
             title="Editar refeição"
             type="Filled"
             icon={<Feather name="edit-3" size={18} color="#ffffff" />}
+            onPress={handleEditMeal}
           />
           <Button
             title="Excluir refeição"

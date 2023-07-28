@@ -5,7 +5,7 @@ interface Meal {
   title: string;
   list: Array<{
     title: string;
-    time: string;
+    date: Date;
     isOnDiet: boolean;
   }>;
 }
@@ -18,7 +18,7 @@ export function Meal({ title, list }: Meal) {
         {list.map((item) => (
           <MealCard
             isOnDiet={item.isOnDiet}
-            time={item.time}
+            date={item.date}
             title={item.title}
             key={item.title}
           />

@@ -1,14 +1,14 @@
 import { ScrollView, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+
 import { HomeProps } from "../@types/navigationProp";
+import { HandleOpenMealContext } from "../contexts/handleOpenMealContext";
 
 import { HomeHeader } from "../components/HomeHeader";
 import { Percentage } from "../components/Percentage";
 import { Meals } from "../components/Meals";
-import { HandleOpenMealContext } from "../contexts/handleOpenMealContext";
 
 export function Home({ navigation }: HomeProps) {
-  
   function handleOpenStatistics() {
     navigation.navigate("Statistics");
   }

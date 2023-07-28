@@ -4,6 +4,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   TextInput,
+  Dimensions,
 } from "react-native";
 import dayjs from "dayjs";
 
@@ -12,19 +13,23 @@ interface DateAndTimeInputProps {
   type: string;
 }
 
+let width = (Dimensions.get("window").width / 2) - 30;
+
 export function DateAndTimeInput({ label, type }: DateAndTimeInputProps) {
+  let inputValue;
+
+  if (type === "date") {
+    inputValue = "27/08/2021";
+  } else {
+    inputValue = "06:50";
+  }
+
   return (
     <View style={styles.container}>
       <Text style={styles.label}>{label}</Text>
 
       <TouchableOpacity>
-        <TextInput
-          style={styles.input}
-          editable={false}
-          value={dayjs(new Date()).format(
-            `${type === "date" ? "DD/MM/YYYY" : "HH:mm"}`
-          )}
-        />
+        <TextInput style={styles.input} editable={false} value={inputValue} />
       </TouchableOpacity>
     </View>
   );
@@ -32,7 +37,7 @@ export function DateAndTimeInput({ label, type }: DateAndTimeInputProps) {
 
 const styles = StyleSheet.create({
   container: {
-    flexGrow: 1,
+    width,
     gap: 6,
   },
 
@@ -53,6 +58,6 @@ const styles = StyleSheet.create({
 
     color: "#1B1D1E",
     fontFamily: "NunitoSans_400Regular",
-    fontSize: 16,
+    fontSize: 14,
   },
 });

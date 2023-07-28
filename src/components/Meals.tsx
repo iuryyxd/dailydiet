@@ -1,13 +1,16 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Feather } from "@expo/vector-icons";
-import { data } from "../utils/data";
 import { Meal } from "./Meal";
+import MealsPlaceholder from "./MealsPlaceholder";
+import { useMeal } from "../hooks/useMeal";
 
 interface MealsProps {
   handleOpenNewMeal: () => void;
 }
 
 export function Meals({ handleOpenNewMeal }: MealsProps) {
+  const { meals } = useMeal();
+
   return (
     <View style={styles.container}>
       {/* Add Meal */}
@@ -26,9 +29,13 @@ export function Meals({ handleOpenNewMeal }: MealsProps) {
       {/* Meals List */}
 
       <View style={styles.meals}>
-        {data.map((item, i) => (
-          <Meal title={item.data} list={item.items} key={i} />
-        ))}
+        {meals.length === 0 ? (
+          <MealsPlaceholder />
+        ) : (
+          meals.map((item, i) => (
+            <Meal title={item.date} list={item.items} key={i} />
+          ))
+        )}
       </View>
     </View>
   );

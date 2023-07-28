@@ -28,7 +28,7 @@ export function DeleteModal({
         toggleModalVisibility();
       }}
     >
-      <StatusBar backgroundColor="rgba(0, 0, 0, 0.25)" />
+      <StatusBar backgroundColor="rgba(0, 0, 0, 0.25)" animated />
       <View style={styles.container}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
@@ -66,13 +66,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   modalView: {
-    width: "80%",
-    height: 192,
+    width: "85%",
+    paddingVertical: 40,
+    paddingHorizontal: 24,
     backgroundColor: "white",
     borderRadius: 8,
     alignItems: "center",
     gap: 32,
-    paddingHorizontal: 24,
   },
   modalText: {
     width: "80%",
@@ -80,7 +80,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: "#333638",
 
-    marginTop: 40,
     textAlign: "center",
   },
 

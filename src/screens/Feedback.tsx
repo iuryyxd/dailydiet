@@ -1,4 +1,5 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { Text, StyleSheet, TouchableOpacity } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import OnDietImg from "../../assets/illustration_ondiet.svg";
 import OffDietImg from "../../assets/illustration_offdiet.svg";
 
@@ -16,7 +17,7 @@ export function Feedback({ navigation, route }: FeedbackProps) {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={[styles.title, { color: color }]}>{title}</Text>
       <Text style={styles.desc}>
         {message1}
@@ -31,7 +32,7 @@ export function Feedback({ navigation, route }: FeedbackProps) {
       >
         <Text style={styles.buttonText}>Ir para a página inicial</Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 }
 

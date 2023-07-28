@@ -3,14 +3,27 @@ import { View, Text, StyleSheet } from "react-native";
 export function StatisticCard({
   title,
   text,
+  color,
 }: {
-  title: string;
+  title: number;
   text: string;
+  color?: string;
 }) {
   return (
-    <View style={styles.statisticsCard}>
+    <View
+      style={[
+        styles.statisticsCard,
+        {
+          backgroundColor: color ? color : "#EFF0F0",
+          height: !color ? 89 : 107,
+          flex: color ? 1 : 0,
+        },
+      ]}
+    >
       <Text style={styles.cardTitle}>{title}</Text>
-      <Text style={styles.cardText}>{text}</Text>
+      <Text style={[styles.cardText, { width: color ? 125 : "auto" }]}>
+        {text}
+      </Text>
     </View>
   );
 }
@@ -18,10 +31,9 @@ export function StatisticCard({
 const styles = StyleSheet.create({
   statisticsCard: {
     width: "100%",
-    height: 89,
-    backgroundColor: "#EFF0F0",
     borderRadius: 8,
     marginBottom: 12,
+    alignItems: "center",
     justifyContent: "center",
   },
 

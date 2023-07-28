@@ -1,15 +1,24 @@
 import { View, Text, StyleSheet } from "react-native";
 import { Feather } from "@expo/vector-icons";
+import { mealsType } from "../@types/meals";
+import { getPercentageOnDiet } from "../utils/MealStatistics";
+import { useMeal } from "../hooks/useMeal";
 
 interface PercentageProps {
   handleOpenStatistics: () => void;
 }
 
 export function Percentage({ handleOpenStatistics }: PercentageProps) {
+  const { meals } = useMeal();
+
   return (
     <View style={styles.container}>
-      <Feather name="arrow-up-right" style={styles.icon} onPress={handleOpenStatistics} />
-      <Text style={styles.title}>90,86%</Text>
+      <Feather
+        name="arrow-up-right"
+        style={styles.icon}
+        onPress={handleOpenStatistics}
+      />
+      <Text style={styles.title}>{getPercentageOnDiet(meals)}%</Text>
       <Text style={styles.text}>das refeições dentro da dieta</Text>
     </View>
   );

@@ -4,8 +4,18 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { StatisticsProps } from "../@types/navigationProp";
 
 import { StatisticCard } from "../components/StatisticCard";
+import {
+  getBestSequenceOnDiet,
+  getMealsOffDiet,
+  getMealsOnDiet,
+  getPercentageOnDiet,
+  getTotalMeals,
+} from "../utils/MealStatistics";
+import { useMeal } from "../hooks/useMeal";
 
 export function Statistics({ navigation }: StatisticsProps) {
+  const { meals } = useMeal();
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -14,7 +24,7 @@ export function Statistics({ navigation }: StatisticsProps) {
           style={styles.icon}
           onPress={() => navigation.navigate("Home")}
         />
-        <Text style={styles.headerTitle}>90,86%</Text>
+        <Text style={styles.headerTitle}>{getPercentageOnDiet(meals)}%</Text>
         <Text style={styles.headerText}>das refeições dentro da dieta</Text>
       </View>
 
@@ -22,21 +32,26 @@ export function Statistics({ navigation }: StatisticsProps) {
         <Text style={styles.statisticsTitle}>Estatísticas gerais</Text>
 
         <StatisticCard
-          title="22"
+          title={getBestSequenceOnDiet(meals)}
           text="melhor sequência de pratos dentro da dieta"
         />
-        <StatisticCard title="109" text="refeições registradas" />
+        <StatisticCard
+          title={getTotalMeals(meals)}
+          text="refeições registradas"
+        />
 
         <View style={styles.cardsDiet}>
-          <View style={styles.cardOnDiet}>
-            <Text style={styles.cardTitle}>99</Text>
-            <Text style={styles.cardText}>refeições dentro da dieta</Text>
-          </View>
+          <StatisticCard
+            title={getMealsOnDiet(meals)}
+            text="refeições dentro da dieta"
+            color="#E5F0DB"
+          />
 
-          <View style={styles.cardOffDiet}>
-            <Text style={styles.cardTitle}>10</Text>
-            <Text style={styles.cardText}>refeições fora da dieta</Text>
-          </View>
+          <StatisticCard
+            title={getMealsOffDiet(meals)}
+            text="refeições fora da dieta"
+            color="#F4E6E7"
+          />
         </View>
       </View>
     </SafeAreaView>
@@ -48,7 +63,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     backgroundColor: "#E5F0DB",
-    paddingTop: 14
+    paddingTop: 14,
   },
 
   header: {
@@ -103,40 +118,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexWrap: "nowrap",
     gap: 12,
-  },
-
-  cardOnDiet: {
-    flex: 1,
-    height: 107,
-    backgroundColor: "#E5F0DB",
-    borderRadius: 8,
-    marginBottom: 12,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
-  cardOffDiet: {
-    flex: 1,
-    height: 107,
-    backgroundColor: "#F4E6E7",
-    borderRadius: 8,
-    marginBottom: 12,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
-  cardTitle: {
-    fontFamily: "NunitoSans_700Bold",
-    fontSize: 24,
-    color: "#1B1D1E",
-    textAlign: "center",
-  },
-
-  cardText: {
-    fontFamily: "NunitoSans_400Regular",
-    fontSize: 14,
-    color: "#333638",
-    textAlign: "center",
-    width: 125,
   },
 });
