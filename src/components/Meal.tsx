@@ -1,26 +1,19 @@
 import { View, Text, StyleSheet } from "react-native";
 import { MealCard } from "./MealCard";
+import dayjs from "dayjs";
+import { mealsType } from "../@types/meals";
 
-interface Meal {
-  title: string;
-  list: Array<{
-    title: string;
-    date: Date;
-    isOnDiet: boolean;
-  }>;
-}
-
-export function Meal({ title, list }: Meal) {
+export function Meal({ date, items }: mealsType) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.title}>{dayjs(date).format("DD.MM.YYYY")}</Text>
       <View style={styles.mealCardsContainer}>
-        {list.map((item) => (
+        {items.map((item) => (
           <MealCard
             isOnDiet={item.isOnDiet}
-            date={item.date}
-            title={item.title}
-            key={item.title}
+            date={item.time}
+            name={item.name}
+            key={item.name}
           />
         ))}
       </View>
@@ -40,6 +33,6 @@ const styles = StyleSheet.create({
   },
 
   mealCardsContainer: {
-    gap: 8
+    gap: 8,
   },
 });

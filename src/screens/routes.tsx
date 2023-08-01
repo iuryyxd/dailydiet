@@ -1,4 +1,5 @@
 import { createStackNavigator } from "@react-navigation/stack";
+
 import { RootStackParamList } from "../@types/navigationProp";
 
 import { Home } from "./Home";

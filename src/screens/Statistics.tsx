@@ -10,7 +10,8 @@ import {
   getMealsOnDiet,
   getPercentageOnDiet,
   getTotalMeals,
-} from "../utils/MealStatistics";
+} from "../utils/mealStatistics";
+
 import { useMeal } from "../hooks/useMeal";
 
 export function Statistics({ navigation }: StatisticsProps) {

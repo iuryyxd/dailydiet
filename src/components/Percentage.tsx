@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet } from "react-native";
 import { Feather } from "@expo/vector-icons";
-import { mealsType } from "../@types/meals";
-import { getPercentageOnDiet } from "../utils/MealStatistics";
+import { getPercentageOnDiet } from "../utils/mealStatistics";
+
 import { useMeal } from "../hooks/useMeal";
 
 interface PercentageProps {

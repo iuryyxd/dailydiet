@@ -1,10 +1,23 @@
+export interface DataFormHookType {
+  name: string;
+  description: string | undefined;
+  date: Date;
+  time: Date;
+  isOnDiet: NonNullable<boolean | undefined>;
+}
+
+export interface MealType extends DataFormHookType {
+  id: string;
+}
+
 export interface mealsType {
-  date: string;
+  date: Date;
   items: {
-    title: string;
-    description: string;
+    name: string;
+    description: string | undefined;
     date: Date;
-    isOnDiet: boolean;
-    id: number;
+    time: Date;
+    isOnDiet: NonNullable<boolean | undefined>;
+    id: string;
   }[];
 }

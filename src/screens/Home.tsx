@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet } from "react-native";
+import { ScrollView, StyleSheet, TouchableOpacity, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { HomeProps } from "../@types/navigationProp";
@@ -7,6 +7,7 @@ import { HandleOpenMealContext } from "../contexts/handleOpenMealContext";
 import { HomeHeader } from "../components/HomeHeader";
 import { Percentage } from "../components/Percentage";
 import { Meals } from "../components/Meals";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export function Home({ navigation }: HomeProps) {
   function handleOpenStatistics() {
@@ -26,6 +27,9 @@ export function Home({ navigation }: HomeProps) {
       <SafeAreaView style={styles.container}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <HomeHeader />
+          <TouchableOpacity onPress={() => AsyncStorage.clear()}>
+            <Text>Aqui</Text>
+          </TouchableOpacity>
           <Percentage handleOpenStatistics={handleOpenStatistics} />
           <Meals handleOpenNewMeal={handleOpenNewMeal} />
         </ScrollView>

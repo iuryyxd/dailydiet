@@ -1,14 +1,27 @@
 import { StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { NewMealProps } from "../@types/navigationProp";
+import { DataFormHookType } from "../@types/meals";
+
+import { createMeal } from "../utils/createMeal";
+import { useMeal } from "../hooks/useMeal";
+
 import { PageHeader } from "../components/PageHeader";
 import { Form } from "../components/Form";
 
 export function NewMeal({ navigation }: NewMealProps) {
-  const handleRegisterMeal = (isOnDiet: boolean | undefined) => {
+  const { meals, setMeals } = useMeal();
+
+  const handleRegisterMeal = async (data: DataFormHookType) => {
+    const newMeals = createMeal(meals, data);
+
+    setMeals(newMeals);
+    AsyncStorage.setItem("meals", JSON.stringify(newMeals));
+
     navigation.navigate("Feedback", {
-      isOnDiet: isOnDiet,
+      isOnDiet: data.isOnDiet,
     });
   };
 

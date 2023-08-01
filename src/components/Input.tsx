@@ -1,13 +1,24 @@
 import { useState } from "react";
+import { Control, Controller, FieldError } from "react-hook-form";
 import { View, Text, StyleSheet, TextInput } from "react-native";
 
 interface InputProps {
   label: string;
   multine?: boolean;
   type: string;
+  inputName: string;
+  control: Control<any>;
+  error?: FieldError | undefined;
 }
 
-export function Input({ label, multine = false, type }: InputProps) {
+export function Input({
+  label,
+  multine = false,
+  type,
+  inputName,
+  control,
+  error,
+}: InputProps) {
   const [focus, setFocus] = useState<boolean>(false);
 
   const handleFocus = () => {
@@ -17,21 +28,30 @@ export function Input({ label, multine = false, type }: InputProps) {
   return (
     <View style={styles.container}>
       <Text style={styles.label}>{label}</Text>
-      <TextInput
-        style={[
-          styles.input,
-          {
-            borderColor: focus ? "#5C6265" : "#DDDEDF",
-            height: type === "desc" ? 120 : 48,
-            textAlignVertical: type === "desc" ? "top" : "center",
-            paddingVertical: type === "desc" ? 12 : 0,
-          },
-        ]}
-        inputMode="text"
-        multiline={multine}
-        onFocus={handleFocus}
-        onBlur={handleFocus}
+      <Controller
+        name={inputName}
+        control={control}
+        render={({ field: { onChange, value } }) => (
+          <TextInput
+            style={[
+              styles.input,
+              {
+                borderColor: focus ? "#5C6265" : "#DDDEDF",
+                height: type === "desc" ? 120 : 48,
+                textAlignVertical: type === "desc" ? "top" : "center",
+                paddingVertical: type === "desc" ? 12 : 0,
+              },
+            ]}
+            inputMode="text"
+            multiline={multine}
+            onFocus={handleFocus}
+            onBlur={handleFocus}
+            value={value}
+            onChangeText={onChange}
+          />
+        )}
       />
+      {error && <Text style={styles.errorMessage}>{error.message}</Text>}
     </View>
   );
 }
@@ -57,5 +77,11 @@ const styles = StyleSheet.create({
     color: "#1B1D1E",
     fontFamily: "NunitoSans_400Regular",
     fontSize: 16,
+  },
+
+  errorMessage: {
+    fontFamily: "NunitoSans_700Bold",
+    fontSize: 14,
+    color: "#BF3B44",
   },
 });

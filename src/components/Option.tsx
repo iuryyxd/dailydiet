@@ -4,7 +4,7 @@ interface OptionProps {
   label: string;
   color: string;
   isSelected: boolean;
-  toggleOption: (option: string) => void;
+  toggleOption: (option: boolean) => void;
 }
 
 export function Option({
@@ -30,7 +30,7 @@ export function Option({
           borderStyle: "solid",
         },
       ]}
-      onPress={() => toggleOption(label === "Sim" ? "yes" : "no")}
+      onPress={() => toggleOption(label === "Sim")}
       activeOpacity={1}
     >
       <View style={[styles.dot, { backgroundColor: color }]} />

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   View,
   Text,
@@ -7,28 +8,66 @@ import {
   Dimensions,
 } from "react-native";
 import dayjs from "dayjs";
+import DateTimePicker, {
+  DateTimePickerEvent,
+} from "@react-native-community/datetimepicker";
+import { Control, Controller } from "react-hook-form";
 
 interface DateAndTimeInputProps {
   label: string;
   type: string;
+  control: Control<any>;
+  inputName: string;
 }
 
-let width = (Dimensions.get("window").width / 2) - 30;
+let width = Dimensions.get("window").width / 2 - 30;
 
-export function DateAndTimeInput({ label, type }: DateAndTimeInputProps) {
-  let inputValue;
+export function DateAndTimeInput({
+  label,
+  type,
+  control,
+  inputName,
+}: DateAndTimeInputProps) {
+  const [date, setDate] = useState<Date>(new Date());
+  const [showPickerModal, setShowPickerModal] = useState<boolean>(false);
 
-  if (type === "date") {
-    inputValue = "27/08/2021";
-  } else {
-    inputValue = "06:50";
-  }
+  const togglePickerModal = () => {
+    setShowPickerModal((prev) => !prev);
+  };
+
+  const toggleValue = (event: DateTimePickerEvent, date?: Date) => {
+    if (event?.type === "set") {
+      setDate(date!);
+    }
+  };
+
+  let inputValue = dayjs(date).format(type === "date" ? "DD/MM/YYYY" : "HH:mm");
 
   return (
     <View style={styles.container}>
       <Text style={styles.label}>{label}</Text>
 
-      <TouchableOpacity>
+      {showPickerModal && (
+        <Controller
+          control={control}
+          name={inputName}
+          render={({ field: { onChange, value } }) => (
+            <DateTimePicker
+              locale="pt-BR"
+              value={value}
+              mode={type === "date" ? "date" : "time"}
+              onChange={(event, date) => {
+                togglePickerModal();
+                toggleValue(event, date);
+                onChange(date);
+              }}
+              maximumDate={new Date()}
+            />
+          )}
+        />
+      )}
+
+      <TouchableOpacity onPress={togglePickerModal}>
         <TextInput style={styles.input} editable={false} value={inputValue} />
       </TouchableOpacity>
     </View>

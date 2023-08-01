@@ -12,6 +12,7 @@ import {
 
 import { Routes } from "./src/screens/routes";
 import { NavigationContainer } from "@react-navigation/native";
+
 import { MealsListContext } from "./src/contexts/mealsListContext";
 import { mealsType } from "./src/@types/meals";
 
@@ -41,13 +42,18 @@ export default function App() {
   useEffect(() => {
     const getData = async () => {
       const value = await AsyncStorage.getItem("meals");
-      if (value === null) AsyncStorage.setItem("meals", JSON.stringify([]));
+      if (value === null)
+        await AsyncStorage.setItem("meals", JSON.stringify([]));
 
       setMeals(value !== null ? JSON.parse(value) : []);
     };
 
     getData();
   }, []);
+
+  useEffect(() => {
+    console.log("app", meals);
+  }, [meals])
 
   if (!fontsLoaded) {
     return null;

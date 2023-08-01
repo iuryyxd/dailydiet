@@ -1,15 +1,17 @@
+import { useContext } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Feather } from "@expo/vector-icons";
+
 import { Meal } from "./Meal";
 import MealsPlaceholder from "./MealsPlaceholder";
-import { useMeal } from "../hooks/useMeal";
+import { MealsListContext } from "../contexts/mealsListContext";
 
 interface MealsProps {
   handleOpenNewMeal: () => void;
 }
 
 export function Meals({ handleOpenNewMeal }: MealsProps) {
-  const { meals } = useMeal();
+  const { meals } = useContext(MealsListContext);
 
   return (
     <View style={styles.container}>
@@ -33,7 +35,7 @@ export function Meals({ handleOpenNewMeal }: MealsProps) {
           <MealsPlaceholder />
         ) : (
           meals.map((item, i) => (
-            <Meal title={item.date} list={item.items} key={i} />
+            <Meal date={item.date} items={item.items} key={i} />
           ))
         )}
       </View>

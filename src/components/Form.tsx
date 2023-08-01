@@ -1,42 +1,82 @@
-import { View, Text } from "react-native";
+import { useState } from "react";
+import { View, StyleSheet } from "react-native";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Controller, useForm } from "react-hook-form";
+
 import { Input } from "./Input";
 import { DateAndTimeInput } from "./DateAndTimeInput";
 import { Button } from "./Button";
 import { Select } from "./Select";
-import { useState } from "react";
-import { StyleSheet } from "react-native";
+
+import { formSchema } from "../schemas/formSchema";
+import { DataFormHookType } from "../@types/meals";
 
 interface FormProps {
   buttonLabel: string;
-  onRegisterMeal: (isOnDiet: boolean | undefined) => void;
+  onRegisterMeal: (data: DataFormHookType) => void;
 }
 
 export function Form({ onRegisterMeal, buttonLabel }: FormProps) {
-  const [isOnDiet, setIsOnDiet] = useState<boolean>();
-
-  const handleToggleDiet = (option: boolean) => {
-    setIsOnDiet(option);
-  };
+  
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      date: new Date(),
+      time: new Date(),
+    },
+    resolver: yupResolver(formSchema),
+  });
 
   return (
     <View style={styles.form}>
       <View style={{ gap: 24 }}>
-        <Input label="Nome" type="name" />
-        <Input label="Descrição" multine={true} type="desc" />
+        <Input
+          label="Nome"
+          type="name"
+          control={control}
+          error={errors.name}
+          inputName="name"
+        />
+        <Input
+          label="Descrição"
+          multine={true}
+          type="desc"
+          control={control}
+          inputName="description"
+        />
 
         <View style={styles.inputsContainer}>
-          <DateAndTimeInput label="Data" type="date" />
-          <DateAndTimeInput label="Hora" type="time" />
+          <DateAndTimeInput
+            label="Data"
+            type="date"
+            control={control}
+            inputName="date"
+          />
+          <DateAndTimeInput
+            label="Hora"
+            type="time"
+            control={control}
+            inputName="time"
+          />
         </View>
 
-        <Select handleToggleDiet={handleToggleDiet} />
+        <Controller
+          control={control}
+          name="isOnDiet"
+          render={({ field: { onChange } }) => (
+            <Select onChangeValue={onChange} error={errors.isOnDiet} />
+          )}
+        />
       </View>
 
       <View>
         <Button
           title={buttonLabel}
           type="Filled"
-          onPress={() => onRegisterMeal(isOnDiet)}
+          onPress={handleSubmit((date) => onRegisterMeal(date))}
         />
       </View>
     </View>

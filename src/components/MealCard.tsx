@@ -2,14 +2,15 @@ import { useContext } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { HandleOpenMealContext } from "../contexts/handleOpenMealContext";
+import dayjs from "dayjs";
 
 interface MealCard {
   date: Date;
-  title: string;
+  name: string;
   isOnDiet: boolean;
 }
 
-export function MealCard({ date, title, isOnDiet }: MealCard) {
+export function MealCard({ date, name, isOnDiet }: MealCard) {
   const { handleOpenMeal } = useContext(HandleOpenMealContext);
 
   return (
@@ -19,10 +20,10 @@ export function MealCard({ date, title, isOnDiet }: MealCard) {
       onPress={handleOpenMeal}
     >
       <View style={styles.textContainer}>
-        <Text style={styles.time}>{String(date)}</Text>
+        <Text style={styles.time}>{dayjs(date).format("HH:mm")}</Text>
         <View style={styles.divider} />
         <Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">
-          {title}
+          {name}
         </Text>
       </View>
 

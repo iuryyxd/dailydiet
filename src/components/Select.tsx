@@ -1,18 +1,27 @@
 import { View, Text, StyleSheet } from "react-native";
 import { Option } from "./Option";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { FieldError } from "react-hook-form";
 
 interface SelectProps {
-  handleToggleDiet: (option: boolean) => void;
+  onChangeValue: (value: boolean) => void;
+  error?: FieldError | undefined;
 }
 
-export function Select({ handleToggleDiet }: SelectProps) {
-  const [option, setOption] = useState<string>();
+export function Select({ error, onChangeValue }: SelectProps) {
+  const [option, setOption] = useState<boolean>();
 
-  const handleOption = (option: string) => {
+  const handleOption = (option: boolean) => {
     setOption(option);
-    handleToggleDiet(option === "yes");
   };
+
+  const handleOnChangeValue = (value: boolean) => {
+    onChangeValue(value);
+  };
+
+  useEffect(() => {
+    handleOnChangeValue(option!);
+  }, [option]);
 
   return (
     <View style={styles.container}>
@@ -22,16 +31,18 @@ export function Select({ handleToggleDiet }: SelectProps) {
         <Option
           label="Sim"
           color="#639339"
-          isSelected={option === "yes"}
+          isSelected={option!}
           toggleOption={handleOption}
         />
         <Option
           label="Não"
           color="#BF3B44"
-          isSelected={option === "no"}
+          isSelected={option! === false}
           toggleOption={handleOption}
         />
       </View>
+
+      {error && <Text style={styles.errorMessage}>{error.message}</Text>}
     </View>
   );
 }
@@ -53,5 +64,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexWrap: "nowrap",
     gap: 8,
+  },
+
+  errorMessage: {
+    fontFamily: "NunitoSans_700Bold",
+    fontSize: 14,
+    color: "#BF3B44",
   },
 });
