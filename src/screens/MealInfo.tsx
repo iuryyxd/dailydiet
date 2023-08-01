@@ -9,8 +9,13 @@ import { Button } from "../components/Button";
 
 import { Feather } from "@expo/vector-icons";
 import { DeleteModal } from "../components/DeleteModal";
+import dayjs from "dayjs";
 
 export function MealInfo({ route, navigation }: MealInfoProps) {
+  const { meal } = route.params;
+
+  console.log(JSON.stringify(meal));
+
   const [modalVisible, setModalVisible] = useState(false);
 
   const toggleModalVisibility = () => {
@@ -32,13 +37,14 @@ export function MealInfo({ route, navigation }: MealInfoProps) {
 
       <View style={styles.main}>
         <View>
-          <Text style={styles.title}>Sanduíche</Text>
-          <Text style={styles.text}>
-            Sanduíche de pão integral com atum e salada de alface e tomate
-          </Text>
+          <Text style={styles.title}>{meal.name}</Text>
+          <Text style={styles.text}>{meal.description}</Text>
           <View style={styles.date}>
             <Text style={styles.dateTitle}>Data e hora</Text>
-            <Text style={styles.text}>12/08/2022 às 16:00</Text>
+            <Text style={styles.text}>
+              {dayjs(meal.date).format("DD/MM/YYYY")} às
+              {dayjs(meal.time).format("HH:mm")}
+            </Text>
           </View>
 
           <MealTag isOnDiet />

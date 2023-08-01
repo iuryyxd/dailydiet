@@ -8,6 +8,7 @@ import { HomeHeader } from "../components/HomeHeader";
 import { Percentage } from "../components/Percentage";
 import { Meals } from "../components/Meals";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { MealType } from "../@types/meals";
 
 export function Home({ navigation }: HomeProps) {
   function handleOpenStatistics() {
@@ -18,8 +19,8 @@ export function Home({ navigation }: HomeProps) {
     navigation.navigate("NewMeal");
   }
 
-  function handleOpenMeal() {
-    navigation.navigate("MealInfo");
+  function handleOpenMeal(mealInfo: MealType) {
+    navigation.navigate("MealInfo", { meal: mealInfo });
   }
 
   return (

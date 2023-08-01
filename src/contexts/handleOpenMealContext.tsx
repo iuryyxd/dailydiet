@@ -1,7 +1,8 @@
 import { createContext } from "react";
+import { MealType } from "../@types/meals";
 
 interface HandleOpenMealContextData {
-  handleOpenMeal: () => void;
+  handleOpenMeal: (mealInfo: MealType) => void;
 }
 
 export const HandleOpenMealContext = createContext(

@@ -9,12 +9,7 @@ export function Meal({ date, items }: mealsType) {
       <Text style={styles.title}>{dayjs(date).format("DD.MM.YYYY")}</Text>
       <View style={styles.mealCardsContainer}>
         {items.map((item) => (
-          <MealCard
-            isOnDiet={item.isOnDiet}
-            date={item.time}
-            name={item.name}
-            key={item.name}
-          />
+          <MealCard data={item} key={item.name} />
         ))}
       </View>
     </View>

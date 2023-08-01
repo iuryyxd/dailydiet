@@ -3,31 +3,32 @@ import { View, Text, StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { HandleOpenMealContext } from "../contexts/handleOpenMealContext";
 import dayjs from "dayjs";
+import { MealType } from "../@types/meals";
 
 interface MealCard {
-  date: Date;
-  name: string;
-  isOnDiet: boolean;
+  data: MealType;
 }
 
-export function MealCard({ date, name, isOnDiet }: MealCard) {
+export function MealCard({ data }: MealCard) {
   const { handleOpenMeal } = useContext(HandleOpenMealContext);
 
   return (
     <TouchableOpacity
       style={styles.container}
       activeOpacity={1}
-      onPress={handleOpenMeal}
+      onPress={() => {
+        handleOpenMeal(data);
+      }}
     >
       <View style={styles.textContainer}>
-        <Text style={styles.time}>{dayjs(date).format("HH:mm")}</Text>
+        <Text style={styles.time}>{dayjs(data.date).format("HH:mm")}</Text>
         <View style={styles.divider} />
         <Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">
-          {name}
+          {data.name}
         </Text>
       </View>
 
-      <View style={isOnDiet ? styles.dotGreen : styles.dotRed} />
+      <View style={data.isOnDiet ? styles.dotGreen : styles.dotRed} />
     </TouchableOpacity>
   );
 }
