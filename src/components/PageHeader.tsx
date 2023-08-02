@@ -8,19 +8,11 @@ interface PageHeaderProps {
 }
 
 export function PageHeader({ title }: PageHeaderProps) {
-  const { navigate } = useNavigation<StackNavigation>();
-
-  const handleNavigateToHome = () => {
-    navigate("Home");
-  };
+  const { goBack } = useNavigation<StackNavigation>();
 
   return (
     <View style={styles.header}>
-      <Feather
-        name="arrow-left"
-        style={styles.icon}
-        onPress={handleNavigateToHome}
-      />
+      <Feather name="arrow-left" style={styles.icon} onPress={() => goBack()} />
       <Text style={styles.headerTitle}>{title}</Text>
     </View>
   );
