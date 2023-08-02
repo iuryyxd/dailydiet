@@ -4,18 +4,16 @@ import { StatusBar } from "expo-status-bar";
 
 interface DeleteModalProps {
   modalVisible: boolean;
+  handleDeleteMeal: () => void;
   toggleModalVisibility: () => void;
 }
 
 export function DeleteModal({
   toggleModalVisibility,
+  handleDeleteMeal,
   modalVisible,
 }: DeleteModalProps) {
   const handleCancel = () => {
-    toggleModalVisibility();
-  };
-
-  const handleDelete = () => {
     toggleModalVisibility();
   };
 
@@ -40,7 +38,7 @@ export function DeleteModal({
               <Button
                 title="Sim, excluir"
                 type="Filled"
-                onPress={handleDelete}
+                onPress={handleDeleteMeal}
               />
             </View>
           </View>

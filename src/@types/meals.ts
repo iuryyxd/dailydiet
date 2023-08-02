@@ -1,8 +1,8 @@
 export interface DataFormHookType {
   name: string;
   description: string | undefined;
-  date: Date;
-  time: Date;
+  date: string;
+  time: string;
   isOnDiet: NonNullable<boolean | undefined>;
 }
 
@@ -15,9 +15,18 @@ export interface mealsType {
   items: {
     name: string;
     description: string | undefined;
-    date: Date;
-    time: Date;
+    date: string;
+    time: string;
     isOnDiet: NonNullable<boolean | undefined>;
     id: string;
   }[];
+}
+
+export interface ParamsType {
+  name: string;
+  description: string | undefined;
+  date: string;
+  time: string;
+  isOnDiet: NonNullable<boolean | undefined>;
+  id: string;
 }

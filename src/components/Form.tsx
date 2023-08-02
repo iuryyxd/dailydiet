@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, useForm } from "react-hook-form";
@@ -9,23 +9,26 @@ import { Button } from "./Button";
 import { Select } from "./Select";
 
 import { formSchema } from "../schemas/formSchema";
-import { DataFormHookType } from "../@types/meals";
+import { DataFormHookType, ParamsType } from "../@types/meals";
+import dayjs from "dayjs";
 
 interface FormProps {
   buttonLabel: string;
   onRegisterMeal: (data: DataFormHookType) => void;
+  mealData?: ParamsType;
 }
 
-export function Form({ onRegisterMeal, buttonLabel }: FormProps) {
-  
+export function Form({ onRegisterMeal, buttonLabel, mealData }: FormProps) {
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm({
     defaultValues: {
-      date: new Date(),
-      time: new Date(),
+      name: mealData?.name ?? "",
+      description: mealData?.description ?? "",
+      date: dayjs(mealData?.date).toDate() ?? new Date(),
+      time: dayjs(mealData?.time).toDate() ?? new Date(),
     },
     resolver: yupResolver(formSchema),
   });
@@ -39,6 +42,7 @@ export function Form({ onRegisterMeal, buttonLabel }: FormProps) {
           control={control}
           error={errors.name}
           inputName="name"
+          defaultValue={mealData?.name}
         />
         <Input
           label="Descrição"
@@ -46,18 +50,21 @@ export function Form({ onRegisterMeal, buttonLabel }: FormProps) {
           type="desc"
           control={control}
           inputName="description"
+          defaultValue={mealData?.description}
         />
 
         <View style={styles.inputsContainer}>
           <DateAndTimeInput
             label="Data"
             type="date"
+            defaultValue={dayjs(mealData?.date).toDate()}
             control={control}
             inputName="date"
           />
           <DateAndTimeInput
             label="Hora"
             type="time"
+            defaultValue={dayjs(mealData?.time).toDate()}
             control={control}
             inputName="time"
           />
@@ -67,7 +74,11 @@ export function Form({ onRegisterMeal, buttonLabel }: FormProps) {
           control={control}
           name="isOnDiet"
           render={({ field: { onChange } }) => (
-            <Select onChangeValue={onChange} error={errors.isOnDiet} />
+            <Select
+              onChangeValue={onChange}
+              error={errors.isOnDiet}
+              defaultValue={mealData?.isOnDiet}
+            />
           )}
         />
       </View>

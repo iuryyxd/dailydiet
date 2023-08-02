@@ -10,11 +10,12 @@ import { Button } from "../components/Button";
 import { Feather } from "@expo/vector-icons";
 import { DeleteModal } from "../components/DeleteModal";
 import dayjs from "dayjs";
+import { useMeal } from "../hooks/useMeal";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export function MealInfo({ route, navigation }: MealInfoProps) {
   const { meal } = route.params;
-
-  console.log(JSON.stringify(meal));
+  const { meals, setMeals } = useMeal();
 
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -22,8 +23,33 @@ export function MealInfo({ route, navigation }: MealInfoProps) {
     setModalVisible((prev) => !prev);
   };
 
+  const handleDeleteMeal = () => {
+    const newMeals = meals.map((mealItem) => {
+      mealItem.items = mealItem.items.filter((item) => item.id !== meal.id);
+      return mealItem;
+    });
+
+    const newMealsFiltered = newMeals.filter(
+      (mealItem) => mealItem.items.length > 0
+    );
+
+    setMeals(newMealsFiltered);
+    AsyncStorage.setItem("meals", JSON.stringify(newMealsFiltered));
+    toggleModalVisibility();
+    navigation.goBack();
+  };
+
   const handleEditMeal = () => {
-    navigation.navigate("EditMeal");
+    navigation.navigate("EditMeal", {
+      meal: {
+        id: meal.id,
+        name: meal.name,
+        description: meal.description,
+        date: meal.date,
+        time: meal.time,
+        isOnDiet: meal.isOnDiet,
+      },
+    });
   };
 
   return (
@@ -32,6 +58,7 @@ export function MealInfo({ route, navigation }: MealInfoProps) {
 
       <DeleteModal
         toggleModalVisibility={toggleModalVisibility}
+        handleDeleteMeal={handleDeleteMeal}
         modalVisible={modalVisible}
       />
 
@@ -42,12 +69,12 @@ export function MealInfo({ route, navigation }: MealInfoProps) {
           <View style={styles.date}>
             <Text style={styles.dateTitle}>Data e hora</Text>
             <Text style={styles.text}>
-              {dayjs(meal.date).format("DD/MM/YYYY")} às
+              {dayjs(meal.date).format("DD/MM/YYYY")} às{" "}
               {dayjs(meal.time).format("HH:mm")}
             </Text>
           </View>
 
-          <MealTag isOnDiet />
+          <MealTag isOnDiet={meal.isOnDiet} />
         </View>
 
         <View style={styles.buttonsContainer}>

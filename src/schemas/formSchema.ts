@@ -7,8 +7,8 @@ export const formSchema = yup
       .required("Este campo é obrigatório")
       .min(3, "O nome deve ter no mínimo 3 caracteres"),
     description: yup.string().optional(),
-    date: yup.date().required(),
-    time: yup.date().required(),
+    date: yup.string().required(),
+    time: yup.string().required(),
     isOnDiet: yup.boolean().required("Este campo é obrigatório"),
   })
   .required();

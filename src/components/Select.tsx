@@ -5,11 +5,14 @@ import { FieldError } from "react-hook-form";
 
 interface SelectProps {
   onChangeValue: (value: boolean) => void;
+  defaultValue?: boolean;
   error?: FieldError | undefined;
 }
 
-export function Select({ error, onChangeValue }: SelectProps) {
-  const [option, setOption] = useState<boolean>();
+export function Select({ error, onChangeValue, defaultValue }: SelectProps) {
+  const [option, setOption] = useState<boolean | undefined>(
+    defaultValue ?? undefined
+  );
 
   const handleOption = (option: boolean) => {
     setOption(option);

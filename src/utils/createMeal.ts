@@ -9,7 +9,7 @@ export const existsMealsWithTheSameDate = (meals: mealsType[], date: Date) => {
 };
 
 export const createMeal = (meals: mealsType[], meal: DataFormHookType) => {
-  if (existsMealsWithTheSameDate(meals, meal.date)) {
+  if (existsMealsWithTheSameDate(meals, dayjs(meal.date).toDate())) {
     const newMeals = meals.map((item) => {
       if (dayjs(meal.date).isSame(dayjs(item.date), "day")) {
         item.items = [

@@ -6,6 +6,7 @@ interface InputProps {
   label: string;
   multine?: boolean;
   type: string;
+  defaultValue?: string;
   inputName: string;
   control: Control<any>;
   error?: FieldError | undefined;
@@ -15,6 +16,7 @@ export function Input({
   label,
   multine = false,
   type,
+  defaultValue,
   inputName,
   control,
   error,
@@ -47,6 +49,7 @@ export function Input({
             onFocus={handleFocus}
             onBlur={handleFocus}
             value={value}
+            defaultValue={defaultValue}
             onChangeText={onChange}
           />
         )}

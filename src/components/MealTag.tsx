@@ -5,12 +5,13 @@ interface MealTagProps {
 }
 
 export function MealTag({ isOnDiet }: MealTagProps) {
+
   return (
     <View style={[styles.container]}>
       <View
         style={[
           styles.dot,
-          { backgroundColor: isOnDiet ? "#639339" : "BF3B44" },
+          { backgroundColor: isOnDiet ? "#639339" : "#BF3B44" },
         ]}
       />
       <Text style={styles.text}>

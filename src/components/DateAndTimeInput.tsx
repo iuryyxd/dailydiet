@@ -16,6 +16,7 @@ import { Control, Controller } from "react-hook-form";
 interface DateAndTimeInputProps {
   label: string;
   type: string;
+  defaultValue?: Date;
   control: Control<any>;
   inputName: string;
 }
@@ -25,10 +26,11 @@ let width = Dimensions.get("window").width / 2 - 30;
 export function DateAndTimeInput({
   label,
   type,
+  defaultValue,
   control,
   inputName,
 }: DateAndTimeInputProps) {
-  const [date, setDate] = useState<Date>(new Date());
+  const [date, setDate] = useState<Date>(defaultValue ?? new Date());
   const [showPickerModal, setShowPickerModal] = useState<boolean>(false);
 
   const togglePickerModal = () => {
