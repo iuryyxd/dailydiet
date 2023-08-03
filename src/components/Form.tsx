@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, useForm } from "react-hook-form";
@@ -27,8 +26,8 @@ export function Form({ onRegisterMeal, buttonLabel, mealData }: FormProps) {
     defaultValues: {
       name: mealData?.name ?? "",
       description: mealData?.description ?? "",
-      date: dayjs(mealData?.date).toDate() ?? new Date(),
-      time: dayjs(mealData?.time).toDate() ?? new Date(),
+      date: mealData?.date ?? String(new Date()),
+      time: mealData?.time ?? String(new Date()),
     },
     resolver: yupResolver(formSchema),
   });

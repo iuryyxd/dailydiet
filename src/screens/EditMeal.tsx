@@ -8,7 +8,7 @@ import { PageHeader } from "../components/PageHeader";
 import { Form } from "../components/Form";
 import dayjs from "dayjs";
 import { useMeal } from "../hooks/useMeal";
-import { createMeal, existsMealsWithTheSameDate } from "../utils/createMeal";
+import { createMeal } from "../utils/createMeal";
 
 export function EditMeal({ route, navigation }: EditMealProps) {
   const { meals, setMeals } = useMeal();

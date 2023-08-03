@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image, ImageBackground } from "react-native";
+import { View, StyleSheet, Image } from "react-native";
 
 import Logo from "../../assets/Logo.svg";
 
