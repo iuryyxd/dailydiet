@@ -2,6 +2,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { MealCard } from "./MealCard";
 import dayjs from "dayjs";
 import { mealsType } from "../@types/meals";
+import { randomUUID } from "expo-crypto";
 
 export function Meal({ date, items }: mealsType) {
   return (
@@ -9,7 +10,7 @@ export function Meal({ date, items }: mealsType) {
       <Text style={styles.title}>{dayjs(date).format("DD.MM.YYYY")}</Text>
       <View style={styles.mealCardsContainer}>
         {items.map((item) => (
-          <MealCard data={item} key={item.name} />
+          <MealCard data={item} key={randomUUID()} />
         ))}
       </View>
     </View>

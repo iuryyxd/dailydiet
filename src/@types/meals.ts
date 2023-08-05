@@ -11,7 +11,7 @@ export interface MealType extends DataFormHookType {
 }
 
 export interface mealsType {
-  date: Date;
+  date: Date | string;
   items: {
     name: string;
     description: string | undefined;

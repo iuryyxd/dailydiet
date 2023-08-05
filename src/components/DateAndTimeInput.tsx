@@ -56,7 +56,7 @@ export function DateAndTimeInput({
           render={({ field: { onChange, value } }) => (
             <DateTimePicker
               locale="pt-BR"
-              value={value}
+              value={dayjs(value).toDate()}
               mode={type === "date" ? "date" : "time"}
               onChange={(event, date) => {
                 togglePickerModal();
