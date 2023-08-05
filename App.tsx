@@ -16,12 +16,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import { MealsListContext } from "./src/contexts/mealsListContext";
 import { mealsType } from "./src/@types/meals";
 
-// import { LogBox } from "react-native";
-
-// LogBox.ignoreLogs([
-//   "Non-serializable values were found in the navigation state",
-// ]);
-
 preventAutoHideAsync();
 
 export default function App() {
