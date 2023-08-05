@@ -21,7 +21,7 @@ export function MealCard({ data }: MealCard) {
       }}
     >
       <View style={styles.textContainer}>
-        <Text style={styles.time}>{dayjs(data.date).format("HH:mm")}</Text>
+        <Text style={styles.time}>{dayjs(data.time).format("HH:mm")}</Text>
         <View style={styles.divider} />
         <Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">
           {data.name}

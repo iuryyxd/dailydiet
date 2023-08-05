@@ -9,10 +9,13 @@ import { Form } from "../components/Form";
 import dayjs from "dayjs";
 import { useMeal } from "../hooks/useMeal";
 import { createMeal } from "../utils/createMeal";
+import { getPercentageOnDiet } from "../utils/mealStatistics";
 
 export function EditMeal({ route, navigation }: EditMealProps) {
   const { meals, setMeals } = useMeal();
   const { meal } = route.params;
+
+  const totalPercentageOnDiet = getPercentageOnDiet(meals);
 
   const handleRegisterMeal = (data: DataFormHookType) => {
     if (dayjs(meal.date).isSame(data.date)) {
@@ -52,7 +55,14 @@ export function EditMeal({ route, navigation }: EditMealProps) {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView
+      style={[
+        styles.container,
+        {
+          backgroundColor: totalPercentageOnDiet >= 50 ? "#E5F0DB" : "#F4E6E7",
+        },
+      ]}
+    >
       <PageHeader title="Editar refeição" />
       <Form
         buttonLabel="Salvar alterações"
@@ -66,7 +76,6 @@ export function EditMeal({ route, navigation }: EditMealProps) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#DDDEDF",
     position: "relative",
     paddingTop: 14,
   },

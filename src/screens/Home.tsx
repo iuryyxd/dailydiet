@@ -28,9 +28,6 @@ export function Home({ navigation }: HomeProps) {
       <SafeAreaView style={styles.container}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <HomeHeader />
-          <TouchableOpacity onPress={() => AsyncStorage.clear()}>
-            <Text>Aqui</Text>
-          </TouchableOpacity>
           <Percentage handleOpenStatistics={handleOpenStatistics} />
           <Meals handleOpenNewMeal={handleOpenNewMeal} />
         </ScrollView>

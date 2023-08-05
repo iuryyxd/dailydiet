@@ -17,15 +17,24 @@ import { useMeal } from "../hooks/useMeal";
 export function Statistics({ navigation }: StatisticsProps) {
   const { meals } = useMeal();
 
+  const totalPercentageOnDiet = getPercentageOnDiet(meals);
+
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView
+      style={[
+        styles.container,
+        {
+          backgroundColor: totalPercentageOnDiet >= 50 ? "#E5F0DB" : "#F4E6E7",
+        },
+      ]}
+    >
       <View style={styles.header}>
         <Feather
           name="arrow-left"
           style={styles.icon}
           onPress={() => navigation.navigate("Home")}
         />
-        <Text style={styles.headerTitle}>{getPercentageOnDiet(meals)}%</Text>
+        <Text style={styles.headerTitle}>{totalPercentageOnDiet}%</Text>
         <Text style={styles.headerText}>das refeições dentro da dieta</Text>
       </View>
 
@@ -63,7 +72,6 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     height: "100%",
-    backgroundColor: "#E5F0DB",
     paddingTop: 14,
   },
 

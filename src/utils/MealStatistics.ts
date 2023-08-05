@@ -8,7 +8,7 @@ export const getPercentageOnDiet = (meals: mealsType[]) => {
     const onDiet = curr.items.filter((item) => item.isOnDiet);
     return acc + onDiet.length;
   }, 0);
-  return Math.round((totalOnDiet / totalMeals) * 100);
+  return Number(((totalOnDiet / totalMeals) * 100).toFixed(2));
 };
 
 export const getTotalMeals = (meals: mealsType[]) => {

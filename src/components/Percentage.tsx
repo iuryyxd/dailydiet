@@ -11,14 +11,23 @@ interface PercentageProps {
 export function Percentage({ handleOpenStatistics }: PercentageProps) {
   const { meals } = useMeal();
 
+  const totalPercentageOnDiet = getPercentageOnDiet(meals);
+
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        {
+          backgroundColor: totalPercentageOnDiet >= 50 ? "#E5F0DB" : "#F4E6E7",
+        },
+      ]}
+    >
       <Feather
         name="arrow-up-right"
         style={styles.icon}
         onPress={handleOpenStatistics}
       />
-      <Text style={styles.title}>{getPercentageOnDiet(meals)}%</Text>
+      <Text style={styles.title}>{totalPercentageOnDiet}%</Text>
       <Text style={styles.text}>das refeições dentro da dieta</Text>
     </View>
   );
@@ -28,7 +37,6 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     height: 102,
-    backgroundColor: "#E5F0DB",
     borderRadius: 8,
     textAlign: "center",
     justifyContent: "center",
